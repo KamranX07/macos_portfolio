@@ -12,15 +12,20 @@ const WindowWrapper = (Component, windowKey) => {
 
         useGSAP(() => {
             const el = ref.current;
-            if (!el || !isOpen) return;
+            if (!el) return;
 
-            el.style.display = "block";
+            if (!isOpen) {
+                gsap.killTweensOf(el);
+                return;
+            }
 
-            gsap.fromTo(
+            const animation = gsap.fromTo(
                 el,
                 { scale: 0.8, opacity: 0, y: 40 },
                 { scale: 1, opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }
             );
+
+            return () => animation.kill();
         }, [isOpen]);
 
         useGSAP(() => {
