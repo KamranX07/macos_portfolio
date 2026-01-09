@@ -59,6 +59,7 @@ body {
             @apply text-sm font-medium text-black;
         }
     }
+
 }
 
 @layer components {
@@ -392,5 +393,10 @@ body {
                 }
             }
         }
+
+    }
+
+    #trash {
+        @apply w-2xl h-[500px] absolute top-40 left-1/3 bg-white shadow-2xl drop-shadow-2xl rounded-xl overflow-hidden;
     }
 }
